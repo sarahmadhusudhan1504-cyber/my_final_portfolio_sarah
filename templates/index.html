@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sarah Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>Sarah Madhusudhan</h1>
+    <p>Front-End Developer</p>
+</header>
+
+<section class="hero">
+    <img src="https://via.placeholder.com/150" alt="profile">
+    <h2>Hello, I'm Sarah</h2>
+    <p>I build websites using HTML, CSS, JavaScript & Python</p>
+</section>
+
+<section>
+    <h2>About Me</h2>
+    <p>I am a BCA student passionate about web development.</p>
+</section>
+
+<section>
+    <h2>Education</h2>
+    <p>BCA - Kristu Jayanti College</p>
+</section>
+
+<section>
+    <h2>Skills</h2>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>Python</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Projects</h2>
+    <p>Portfolio Website, Python Projects</p>
+</section>
+
+<section>
+    <h2>Contact Me</h2>
+
+    <form action="/submit" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message"></textarea>
+        <button type="submit">Send</button>
+    </form>
+
+</section>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
