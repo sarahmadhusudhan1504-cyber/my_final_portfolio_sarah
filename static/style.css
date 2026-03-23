@@ -1,35 +1,101 @@
 body {
-    font-family: Arial;
-    background: #111;
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: #0f0f1a;
     color: white;
+}
+
+.container {
+    display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    background: #151525;
+    padding: 20px;
     text-align: center;
 }
 
-header {
-    background: #000;
-    padding: 20px;
-}
-
-.hero img {
+.profile {
+    width: 120px;
     border-radius: 50%;
-    width: 150px;
-    border: 3px solid purple;
+    border: 3px solid #ffcc00;
 }
 
-section {
-    margin: 20px;
+.info {
+    margin: 15px 0;
+}
+
+.skill {
+    margin: 10px 0;
+}
+
+.bar {
+    background: #333;
+    height: 6px;
+    border-radius: 10px;
+}
+
+.bar div {
+    height: 6px;
+    background: #ffcc00;
+}
+
+/* MAIN */
+.main {
+    flex: 1;
     padding: 20px;
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1c1c2e;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.hero-img {
+    width: 250px;
+    border-radius: 10px;
+}
+
+/* BUTTON */
+button {
+    background: #ffcc00;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    background: #1c1c2e;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* CONTACT */
+.contact {
+    margin-top: 20px;
 }
 
 input, textarea {
-    width: 80%;
-    margin: 10px;
+    width: 100%;
     padding: 10px;
-}
-
-button {
-    background: purple;
-    color: white;
-    padding: 10px;
+    margin: 10px 0;
+    background: #222;
     border: none;
+    color: white;
 }
