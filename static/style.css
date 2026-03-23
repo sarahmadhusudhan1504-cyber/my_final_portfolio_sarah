@@ -1,35 +1,154 @@
+/* BASE */
 body {
-    font-family: Arial;
-    background: #111;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0d0d1a;
     color: white;
-    text-align: center;
 }
 
-header {
-    background: #000;
-    padding: 20px;
+/* 🔥 ALL HEADERS */
+h1, h2, h3 {
+    font-family: "Times New Roman", serif;
 }
 
-.hero img {
+/* WRAPPER (CENTERED + COMPACT) */
+.wrapper {
+    max-width: 1000px;
+    margin: 10px auto;
+}
+
+/* 🔝 TOP SECTION */
+.top-section {
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+    background: #121225;
+}
+
+/* IMAGE */
+.top-img {
+    width: 140px;
     border-radius: 50%;
-    width: 150px;
-    border: 3px solid purple;
+    border: 3px solid #a855f7;
+    box-shadow: 0 0 20px #a855f7;
+    margin-right: 30px;
+    margin-left: 30px;
 }
 
-section {
-    margin: 20px;
-    padding: 20px;
+/* TEXT AREA */
+.top-content {
+    flex: 1;
 }
 
+/* NAME (CENTERED) */
+.top-content h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 30px;
+}
+
+/* ROLE */
+.role {
+    text-align: center;
+    color: #a855f7;
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-family: Calibri, sans-serif;
+}
+
+/* STATEMENT + CONTACT */
+.statement {
+    text-align: left;
+    max-width: 600px;
+    margin: auto;
+    color: #ccc;
+    font-family: Calibri, sans-serif;
+    line-height: 1.6;
+}
+
+.contact-line {
+    text-align: left;
+    max-width: 600px;
+    margin: 10px auto;
+    color: #aaa;
+    font-family: Calibri, sans-serif;
+}
+
+/* 🔥 MAIN GRID */
+.container {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 15px;
+    padding: 10px;
+}
+
+/* LEFT + RIGHT BOXES */
+.left, .right {
+    background: #111122;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+/* SECTION SPACING */
+.section {
+    margin-bottom: 15px;
+}
+
+/* SECTION HEADINGS */
+.section h2 {
+    color: #a855f7;
+    text-shadow: 0 0 8px #a855f7;
+    margin-bottom: 10px;
+}
+
+/* LEFT SIDE TEXT */
+.left p, .left li {
+    font-family: Calibri, sans-serif;
+    margin: 4px 0;
+}
+
+/* RIGHT SIDE TEXT */
+.right p {
+    font-family: Calibri, sans-serif;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.right li {
+    font-family: Calibri, sans-serif;
+    line-height: 1.6;
+    margin-bottom: 5px;
+}
+
+/* LIST */
+ul {
+    padding-left: 18px;
+}
+
+/* FORM */
 input, textarea {
-    width: 80%;
-    margin: 10px;
-    padding: 10px;
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0;
+    background: #1e1e35;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-family: Calibri, sans-serif;
 }
 
+/* BUTTON */
 button {
-    background: purple;
-    color: white;
-    padding: 10px;
+    width: 100%;
+    padding: 8px;
+    background: #a855f7;
     border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Calibri, sans-serif;
+}
+
+button:hover {
+    box-shadow: 0 0 8px #a855f7;
 }
