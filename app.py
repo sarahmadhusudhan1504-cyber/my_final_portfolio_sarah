@@ -1,23 +1,30 @@
 from flask import Flask, render_template, request
-import mysql.connector
+import psycopg2
+import os
 
 app = Flask(__name__)
 
-# MySQL connection (DISABLED for deployment on Render)
-# db = mysql.connector.connect(
-#     host="localhost",
-#     user="root",
-#     password="A1HnZv16*",
-#     database="portfolio"
-# )
-#
-# cursor = db.cursor()
+# Get DB URL from Render
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
+# Connect to PostgreSQL
+conn = psycopg2.connect(DATABASE_URL)
+cursor = conn.cursor()
+
+# Create table automatically
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS contacts (
+    id SERIAL PRIMARY KEY,
+    name TEXT,
+    email TEXT,
+    message TEXT
+);
+""")
+conn.commit()
 
 @app.route('/')
 def home():
     return render_template('index.html')
-
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -25,20 +32,13 @@ def submit():
     email = request.form['email']
     message = request.form['message']
 
-    # Database insert (DISABLED for deployment)
-    # query = "INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)"
-    # values = (name, email, message)
-    # cursor.execute(query, values)
-    # db.commit()
+    cursor.execute(
+        "INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)",
+        (name, email, message)
+    )
+    conn.commit()
 
-    # Instead of DB, just print (so app doesn't crash)
-    print("New Form Submission:")
-    print("Name:", name)
-    print("Email:", email)
-    print("Message:", message)
-
-    return "Form Submitted Successfully!"
-
+    return "Stored in database!"
 
 if __name__ == '__main__':
     app.run(debug=True)
