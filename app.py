@@ -1,17 +1,21 @@
 from flask import Flask, render_template, request
 import psycopg2
-import os
 
 app = Flask(__name__)
 
-#Get database URL from Render
-DATABASE_URL = os.environ.get("DATABASE_URL")
+# ✅ Your Render Database URL
+DATABASE_URL = "postgresql://portfolio_db_gb3f_user:g9zWEMMCB7PadKSN5BlRqKtLmwOt6iOU@dpg-d6tqpb24d50c73cft1bg-a.oregon-postgres.render.com/portfolio_db_gb3f"
 
-#Connect to PostgreSQL
-conn = psycopg2.connect(DATABASE_URL)
+
+# ✅ Function to create connection (BEST PRACTICE)
+def get_connection():
+    return psycopg2.connect(DATABASE_URL)
+
+
+# ✅ Create table (runs once at start)
+conn = get_connection()
 cursor = conn.cursor()
 
-# Create table automatically (if not exists)
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS contacts (
     id SERIAL PRIMARY KEY,
@@ -21,18 +25,25 @@ CREATE TABLE IF NOT EXISTS contacts (
 );
 """)
 conn.commit()
+cursor.close()
+conn.close()
 
-#Home page
+
+# ✅ Home page
 @app.route('/')
 def home():
     return render_template('index.html')
 
-#Form submission
+
+# ✅ Form submission
 @app.route('/submit', methods=['POST'])
 def submit():
     name = request.form['name']
     email = request.form['email']
     message = request.form['message']
+
+    conn = get_connection()
+    cursor = conn.cursor()
 
     cursor.execute(
         "INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)",
@@ -40,16 +51,27 @@ def submit():
     )
     conn.commit()
 
-    return "FORM SUBMITTED SUCESSFULLY !! [Stored in database!]"
+    cursor.close()
+    conn.close()
 
-# TO show DATA 
+    return "FORM SUBMITTED SUCCESSFULLY !! [Stored in database!]"
+
+
+# ✅ Show data
 @app.route('/data')
 def show_data():
+    conn = get_connection()
+    cursor = conn.cursor()
+
     cursor.execute("SELECT * FROM contacts")
     data = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
     return str(data)
 
-#Run app
+
+# ✅ Run app
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True)
